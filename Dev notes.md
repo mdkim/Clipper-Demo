@@ -38,8 +38,12 @@ npm start
     - Packaging: JAR
     - Java: 17
     - Dependencies: Spring Web
-```groovy
-// in `build.gradle`
+```gradle
+// in `build.gradle
+plugins {
+  ...
+  id "io.freefair.lombok" version "6.6"
+}
 dependencies {
     ...
     implementation 'com.h2database:h2:2.1.214'
