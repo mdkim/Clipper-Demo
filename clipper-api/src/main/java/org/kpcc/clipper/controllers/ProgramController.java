@@ -4,11 +4,13 @@ import org.kpcc.clipper.model.Program;
 import org.kpcc.clipper.model.ProgramsResponse;
 import org.kpcc.clipper.util.ClientProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+@CrossOrigin
 @RestController
 public class ProgramController {
 

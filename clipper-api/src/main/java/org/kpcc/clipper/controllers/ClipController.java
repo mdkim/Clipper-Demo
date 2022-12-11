@@ -4,11 +4,13 @@ import org.kpcc.clipper.model.Clip;
 import org.kpcc.clipper.model.ClipsResponse;
 import org.kpcc.clipper.util.ClientProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+@CrossOrigin
 @RestController
 public class ClipController {
 
@@ -16,7 +18,7 @@ public class ClipController {
     ClientProvider clientProvider;
 
     @GetMapping("/programs/{programId}/clips")
-    public ClipsResponse getPrograms(@PathVariable String programId) {
+    public ClipsResponse getClips(@PathVariable String programId) {
         Mono<ClipsResponse> mono = clientProvider.getClient().get()
             .uri("/programs/" + programId + "/clips").retrieve()
             .bodyToMono(ClipsResponse.class);
@@ -24,7 +26,7 @@ public class ClipController {
     }
 
     @GetMapping("/clips/{clipId}")
-    public Clip getProgram(@PathVariable String clipId) {
+    public Clip getClip(@PathVariable String clipId) {
         Mono<Clip> mono = clientProvider.getClient().get()
             .uri("/clips/" + clipId).retrieve()
             .bodyToMono(Clip.class);
