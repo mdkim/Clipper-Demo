@@ -1,4 +1,4 @@
-package org.kpcc.clipper.controllers;
+package org.kpcc.clipper.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

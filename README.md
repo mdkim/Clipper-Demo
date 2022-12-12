@@ -1,10 +1,36 @@
+# SCPR Demo
 
-## Dev notes
-
-- Requires installed software
-  - Node.js [https://nodejs.org/en/download/]
+1. start `clipper-api`
+```sh
+cd clipper-api
+./gradlew bootRun
+```
+  - (optional) H2 database console: http://localhost:3000/h2-console
 
 ---
+
+> Requires installed software
+>  - Node.js [https://nodejs.org/en/download/]
+
+2. start `clipper-io`
+```sh
+cd clipper-io
+npm start
+```
+  - Open: http://localhost:3000/
+
+---
+
+3. Clean-up
+```sh
+# delete H2 database files
+rm -r ~/temp-h2
+```
+
+---
+
+###### &nbsp;
+## Dev notes
 
 ## `clipper-io`
 
@@ -17,13 +43,6 @@ npm install @mui/joy @emotion/react @emotion/styled
 npm install @mui/icons-material
 npm install react-router-dom
 npm install axios
-```
-
-- TODO: replace with `npm build` and copy to `clipper-api` static
-- start `clipper-io`
-```sh
-cd clipper-io
-npm start
 ```
 
 ---
@@ -49,9 +68,4 @@ dependencies {
     implementation 'com.h2database:h2:2.1.214'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
-```
-
-- start `clipper-api`
-```sh
-./gradlew bootRun
 ```

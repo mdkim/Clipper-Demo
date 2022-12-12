@@ -1,4 +1,4 @@
-package org.kpcc.clipper.controllers;
+package org.kpcc.clipper.controller;
 
 import org.kpcc.clipper.model.Program;
 import org.kpcc.clipper.model.ProgramsResponse;

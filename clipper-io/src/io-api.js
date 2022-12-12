@@ -35,8 +35,10 @@ const getClips = async (programId) => {
         .then(async (res) => {
             let resProgram = await getProgram(programId);
             res = { Clips: res.data.Clips, Program: resProgram.data };
+            console.log("getClips() return 1, res.Clips.length=" + res.Clips.length);
             return res;
         });
+    console.log("getClips() return 2, res.Clips.length=" + res.Clips.length);
     return res;
 };
 
@@ -47,9 +49,42 @@ const getClip = async (clipId) => {
     return await axios_client.get('/api/clips/' + clipId, {});
 };
 
+/*
+* getFavorites
+*/
+const getFavorites = async () => {
+    let res = await axios_client
+        .get('/api/favorites', {});
+    return res;
+};
+
+/*
+* updateFavorite
+*/
+const updateFavorite = async (clipId, isFavorite) => {
+    let res = await axios_client
+        .post('/api/favorites', {
+            clipId: clipId,
+            isFavorite: isFavorite
+        }).then(res => {
+            console.log("updateFavorite() return 1, res=" + res);
+            return res;
+        });
+    console.log("updateFavorite() return 2, res=" + res);
+    return res;
+};
+
+const get500 = async () => {
+    await axios_client
+        .get('/api/error', {});
+}
+
 export {
     getPrograms,
     getProgram,
     getClips,
-    getClip
+    getClip,
+    getFavorites,
+    updateFavorite,
+    get500
 };

@@ -1,15 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import { CssVarsProvider } from '@mui/joy/styles';
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography';
-import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
-import AspectRatio from '@mui/joy/AspectRatio';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { extendTheme } from '@mui/joy/styles';
+import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import Typography from '@mui/joy/Typography';
 
 import { getPrograms } from '../io-api';
 
@@ -26,7 +23,7 @@ export default function ProgramsPage() {
 
   useEffect(() => {
     loadPrograms();
-    console.log("called Effect getPrograms()");
+    console.log("called Effect loadPrograms()");
     // eslint-disable-next-line
   }, []);
 
@@ -37,7 +34,7 @@ export default function ProgramsPage() {
   const setUnknownErrorHandler = (err) => {
     let unknownError = "";
     if (err) {
-      console.log(err);
+      console.log("err=" + err);
       unknownError = "Unknown error";
     }
     setUnknownError(unknownError);
@@ -61,7 +58,7 @@ export default function ProgramsPage() {
         <Typography color="danger" level="body1">
           {unknownError}
         </Typography>
-        <Sheet sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, p: 6 }}>
+        <Sheet sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, pt: 4, pl: 6 }}>
           {programs.map((program, i) => {
             return (
               <GradientCover program={program} key={i} />
@@ -82,21 +79,6 @@ function GradientCover(props) {
         <AspectRatio ratio="1">
           <img src={p.ArtworkUrl} loading="lazy" alt="Podcasts for {program.Name} from {program.Author}" />
         </AspectRatio>
-        <IconButton
-          aria-label="Favorite"
-          size="lg"
-          variant="solid"
-          color="primary"
-          sx={{
-            position: 'absolute',
-            borderRadius: '50%',
-            right: '1rem',
-            bottom: 0,
-            transform: 'translateY(50%)',
-          }}
-        >
-          <FavoriteIcon color="white" />
-        </IconButton>
       </CardOverflow>
       <Typography level="h4" sx={{ mt: 1, lineHeight: "sm" }}>
         <Link href={permalink} overlay underline="none">

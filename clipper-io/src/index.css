@@ -34,8 +34,8 @@ div.description:hover {
 }
 
 img.programArtwork {
-  height: 354px;
-  width: 354px;
+  max-height: 354px;
+  max-width: 354px;
   float: left;
   margin-right: 24px;
 }

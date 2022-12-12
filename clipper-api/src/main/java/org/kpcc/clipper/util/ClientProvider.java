@@ -1,25 +1,22 @@
 package org.kpcc.clipper.util;
 
-import jakarta.annotation.PostConstruct;
-import org.kpcc.clipper.controllers.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+import org.kpcc.clipper.controller.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import jakarta.annotation.PostConstruct;
+import reactor.core.publisher.Mono;
 
 @Component
 @PropertySource("classpath:api.properties")
 public class ClientProvider {
-
-    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("${org.id}")
     private String org_id;
