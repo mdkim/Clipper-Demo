@@ -22,38 +22,36 @@ const darkTheme = extendTheme({
 export default function ProgramsPage() {
 
   const [programs, setPrograms] = useState([]);
-  const [pageProps, setProps] = useState({
-    unknownError: ""
-  });
+  const [unknownError, setUnknownError] = useState("");
 
   useEffect(() => {
     loadPrograms();
     console.log("called Effect getPrograms()");
+    // eslint-disable-next-line
   }, []);
 
   // state handlers
 
   // state handlers for Errors
   
-  const setUnknownError = (err) => {
-    const propsCopy = Object.assign({}, pageProps);
-    propsCopy.unknownError = "";
+  const setUnknownErrorHandler = (err) => {
+    let unknownError = "";
     if (err) {
       console.log(err);
-      propsCopy.unknownError = "Unknown error";
+      unknownError = "Unknown error";
     }
-    setProps(propsCopy);
+    setUnknownError(unknownError);
   }
 
   // event handlers
 
   async function loadPrograms() {
-    setUnknownError(null);
+    setUnknownErrorHandler(null);
     await getPrograms()
       .then((response) => {
         setPrograms(response.data.Programs);
       }).catch((err) => {
-        setUnknownError(err);
+        setUnknownErrorHandler(err);
       });
   }
 
@@ -61,7 +59,7 @@ export default function ProgramsPage() {
     <CssVarsProvider theme={darkTheme}>
       <main>
         <Typography color="danger" level="body1">
-          {pageProps.unknownError}
+          {unknownError}
         </Typography>
         <Sheet sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, p: 6 }}>
           {programs.map((program, i) => {
@@ -77,12 +75,12 @@ export default function ProgramsPage() {
 
 function GradientCover(props) {
   const p = props.program;
-  const permalink = "localhost:3000/programs/" + p.Id;
+  const permalink = "http://localhost:3000/clips/" + p.Id;
   return (
     <Card variant="outlined" sx={{ width: 320 }}>
       <CardOverflow>
         <AspectRatio ratio="1">
-          <img src={p.ArtworkUrl} loading="lazy" alt="" />
+          <img src={p.ArtworkUrl} loading="lazy" alt="Podcasts for {program.Name} from {program.Author}" />
         </AspectRatio>
         <IconButton
           aria-label="Favorite"
@@ -100,12 +98,12 @@ function GradientCover(props) {
           <FavoriteIcon color="white" />
         </IconButton>
       </CardOverflow>
-      <Link href={permalink} overlay underline="none">
-        <Typography level="h4" sx={{ mt: 1 }}>
+      <Typography level="h4" sx={{ mt: 1, lineHeight: "sm" }}>
+        <Link href={permalink} overlay underline="none">
           <b>{p.Name}</b>
-        </Typography>
-      </Link>
-      <Typography level="h7" className="oneline">
+        </Link>
+      </Typography>
+      <Typography level="h6" className="oneline">
         {p.Author}
       </Typography>
       <div className="description">

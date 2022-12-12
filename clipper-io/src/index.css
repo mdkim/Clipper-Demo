@@ -14,13 +14,13 @@ code {
     monospace;
 }
 
-.oneline {
+div.oneline {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.description {
+div.description {
   z-index: 1;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -29,8 +29,15 @@ code {
   -webkit-box-orient: vertical;
 }
 
-.description:hover {
+div.description:hover {
   display: block;
+}
+
+img.programArtwork {
+  height: 354px;
+  width: 354px;
+  float: left;
+  margin-right: 24px;
 }
 
 #loadingStatus {
