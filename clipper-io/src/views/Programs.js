@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Link from '@mui/joy/Link';
 import Sheet from '@mui/joy/Sheet';
-import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 import { getPrograms } from '../io-api';
 
@@ -72,7 +73,7 @@ export default function ProgramsPage() {
 
 function GradientCover(props) {
   const p = props.program;
-  const permalink = "http://localhost:3000/clips/" + p.Id;
+  const permalink = "/clips/" + p.Id;
   return (
     <Card variant="outlined" sx={{ width: 320 }}>
       <CardOverflow>
@@ -81,7 +82,7 @@ function GradientCover(props) {
         </AspectRatio>
       </CardOverflow>
       <Typography level="h4" sx={{ mt: 1, lineHeight: "sm" }}>
-        <Link href={permalink} overlay underline="none">
+        <Link component={RouterLink} to={permalink} overlay underline="none">
           <b>{p.Name}</b>
         </Link>
       </Typography>

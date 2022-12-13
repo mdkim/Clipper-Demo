@@ -35,10 +35,8 @@ const getClips = async (programId) => {
         .then(async (res) => {
             let resProgram = await getProgram(programId);
             res = { Clips: res.data.Clips, Program: resProgram.data };
-            console.log("getClips() return 1, res.Clips.length=" + res.Clips.length);
             return res;
         });
-    console.log("getClips() return 2, res.Clips.length=" + res.Clips.length);
     return res;
 };
 
@@ -67,10 +65,8 @@ const updateFavorite = async (clipId, isFavorite) => {
             clipId: clipId,
             isFavorite: isFavorite
         }).then(res => {
-            console.log("updateFavorite() return 1, res=" + res);
             return res;
         });
-    console.log("updateFavorite() return 2, res=" + res);
     return res;
 };
 

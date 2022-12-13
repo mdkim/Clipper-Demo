@@ -1,7 +1,8 @@
 import {
   Routes,
   Route,
-  Outlet,
+  Link as RouterLink,
+  Outlet
 } from "react-router-dom";
 
 import Sheet from '@mui/joy/Sheet';
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<ProgramsPage />} />
-          <Route path="/clips/*" element={<ClipsPage />} />
+          <Route path="/clips/:programId" element={<ClipsPage />} />
           <Route path="/favorites" element={<ClipsPage />} />
         </Route>
       </Routes>
@@ -29,8 +30,8 @@ function Layout() {
     <div>
       <header>
         <Sheet sx={{ pt: 2, pl: 6 }}>
-          <Link href="/">Programs</Link>
-          <Link href="/favorites" sx={{ pl: 4 }}>Favorites</Link>
+          <Link component={RouterLink} to="/">Programs</Link>
+          <Link component={RouterLink} to="/favorites" sx={{ pl: 4 }}>Favorites</Link>
         </Sheet>
       </header>
       <Outlet />

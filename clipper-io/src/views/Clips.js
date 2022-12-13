@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
@@ -37,19 +37,18 @@ export default function ClipsPage() {
   const [playerUrl, setPlayerUrl] = useState("");
   const [isPlayerOpen, setPlayerOpen] = useState(false);
   const [unknownError, setUnknownError] = useState("");
-  const [pageProps] = useState({
-    programId: useLocation().pathname.split("/")[2] ?? "favorites"
-  });
+
+  const { programId } = useParams();
 
   useEffect(() => {
     loadFaves();
     console.log("called Effect loadFaves()");
     // eslint-disable-next-line
-  }, []);
+  }, [programId]);
 
   useEffect(() => {
     loadClips();
-    console.log("called Effect loadClips()");
+    console.log("called Effect loadClips(), programId=" + programId);
     // eslint-disable-next-line
   }, [faves]);
 
@@ -81,7 +80,7 @@ export default function ClipsPage() {
   async function loadClips() {
     // uri = /favorites
     setUnknownErrorHandler(null);
-    if (pageProps.programId === "favorites") {
+    if (!programId) { // favorites
       let result = [];
       for (const clipId in faves) {
         await getClip(clipId)
@@ -92,12 +91,12 @@ export default function ClipsPage() {
           });
       }
       setClips(result);
-      return result;
+      setProgram("");
+      return;
     }
-    // uri = /clips/${clipId}
-    if (!pageProps.programId) return;
+    // uri = /clips/:programId
     setUnknownErrorHandler(null);
-    await getClips(pageProps.programId)
+    await getClips(programId)
       .then((res) => {
         setClips(res.Clips);
         setProgram(res.Program);
@@ -107,12 +106,6 @@ export default function ClipsPage() {
   }
 
   async function loadFaves() {
-    if (!pageProps.programId
-      && pageProps.programId !== "favorites") {
-        console.log("exiting loadFaves(), pageProps.programId=" + pageProps.programId);
-        return;
-    }
-
     setUnknownErrorHandler(null);
     await getFavorites()
       .then((res) => {
@@ -126,7 +119,6 @@ export default function ClipsPage() {
     setUnknownErrorHandler(null);
     let isCurrFavorite = faves[clipId];
     if (!isCurrFavorite) isCurrFavorite = false;
-    console.log("isCurrFavorite=" + isCurrFavorite);
     await updateFavorite(clipId, !isCurrFavorite)
       .then((res) => { // not accurate in case of deleting nonexistent record
         const favesCopy = Object.assign({}, faves);
