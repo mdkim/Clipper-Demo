@@ -126,10 +126,11 @@ export default function ClipsPage() {
     setUnknownErrorHandler(null);
     let isCurrFavorite = faves[clipId];
     if (!isCurrFavorite) isCurrFavorite = false;
+    console.log("isCurrFavorite=" + isCurrFavorite);
     await updateFavorite(clipId, !isCurrFavorite)
-      .then((isFavorite) => {
+      .then((res) => { // not accurate in case of deleting nonexistent record
         const favesCopy = Object.assign({}, faves);
-        favesCopy[clipId] = isFavorite;
+        favesCopy[clipId] = !isCurrFavorite; // use passed in value instead
         setFaves(favesCopy);
       }).catch((err) => {
         setUnknownErrorHandler(err);

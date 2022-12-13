@@ -109,10 +109,10 @@ public class DataProvider {
             // error code/message specific to H2
             if (e.getErrorCode() == 23505
                 || e.getMessage().indexOf("Unique index or primary key violation") == 0) {
-                return isFavorite;
+                return !isFavorite; // not updated
             }
             throw new RuntimeException(e);
         }
-        return isFavorite;
+        return isFavorite; // not accurate in case of deleting nonexistent record
     }
 }
