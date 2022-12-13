@@ -4,6 +4,10 @@
 ```sh
 cd clipper-api
 ./gradlew bootRun
+
+# or on Windows
+cd clipper-api
+.\gradlew bootRun
 ```
   - (optional) H2 database console: http://localhost:8080/api/h2-console
 
@@ -14,7 +18,11 @@ cd clipper-api
 
 2. start `clipper-io`
 ```sh
+# first time install of `package.json` modules
 cd clipper-io
+npm install
+
+# to run front-end after `npm install`
 npm start
 ```
   - Open: http://localhost:3000/

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
@@ -9,15 +8,15 @@ import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import AspectRatio from '@mui/joy/AspectRatio';
-import { extendTheme } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 import Drawer from '@mui/material/Drawer';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import { deepmerge } from '@mui/utils';
 import {
   experimental_extendTheme as extendMuiTheme,
 } from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
 
 import { getClips, getFavorites, updateFavorite, getClip } from '../io-api';
 // eslint-disable-next-line
@@ -81,6 +80,7 @@ export default function ClipsPage() {
 
   async function loadClips() {
     // uri = /favorites
+    setUnknownErrorHandler(null);
     if (pageProps.programId === "favorites") {
       let result = [];
       for (const clipId in faves) {
@@ -172,7 +172,7 @@ export default function ClipsPage() {
             </Typography>
           </div>
         </Sheet>
-        <Sheet sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, pt: 4, pl: 6 }}>
+        <Sheet sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, pt: 4, pb: 4, pl: 6 }}>
           {clips.map((clip, i) => {
             return (
               <GradientCover key={i} clip={clip}
