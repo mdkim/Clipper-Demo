@@ -5,7 +5,7 @@
 cd clipper-api
 ./gradlew bootRun
 ```
-  - (optional) H2 database console: http://localhost:8080/h2-console
+  - (optional) H2 database console: http://localhost:8080/api/h2-console
 
 ---
 
