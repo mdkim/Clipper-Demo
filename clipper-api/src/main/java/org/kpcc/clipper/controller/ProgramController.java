@@ -1,13 +1,12 @@
 package org.kpcc.clipper.controller;
 
+import org.kpcc.clipper.model.Favorite;
+import org.kpcc.clipper.model.Org;
 import org.kpcc.clipper.model.Program;
 import org.kpcc.clipper.model.ProgramsResponse;
 import org.kpcc.clipper.util.ClientProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin
@@ -31,5 +30,10 @@ public class ProgramController {
             .uri("/programs/" + programId).retrieve()
             .bodyToMono(Program.class);
         return mono.block();
+    }
+
+    @PutMapping("/org")
+    public void setClientOrgId(@RequestBody Org org) {
+        clientProvider.setOrgId(org.getOrgId());
     }
 }

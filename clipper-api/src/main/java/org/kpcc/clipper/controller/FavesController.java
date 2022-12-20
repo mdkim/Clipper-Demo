@@ -32,7 +32,7 @@ public class FavesController {
         return dataProvider.updateFavorite(userId, fave.getClipId(), fave.isFavorite());
     }
 
-    @GetMapping("/error")
+    @GetMapping("/error500")
     public void get500() {
         throw new RuntimeException("get500");
     }

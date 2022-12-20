@@ -70,9 +70,22 @@ const updateFavorite = async (clipId, isFavorite) => {
     return res;
 };
 
+/*
+* updateClientOrgId
+*/
+const apiUpdateClientOrgId = async (orgId) => {
+    let res = await axios_client
+        .put('/api/org', {
+            orgId: orgId
+        }).then(res => {
+            return res;
+        });
+    return res;
+};
+
 const get500 = async () => {
-    await axios_client
-        .get('/api/error', {});
+    return await axios_client
+        .get('/api/error500', {});
 }
 
 export {
@@ -82,5 +95,6 @@ export {
     getClip,
     getFavorites,
     updateFavorite,
+    apiUpdateClientOrgId,
     get500
 };

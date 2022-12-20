@@ -29,18 +29,26 @@ public class ClientProvider {
         return client;
     }
 
+    public void setOrgId(String org_id) {
+        this.org_id = org_id;
+        this.initClient();
+    }
+
     @PostConstruct
     private void postConstruct() {
-        this.omny_api_url += "orgs/" + this.org_id;
+        this.initClient();
+    }
 
-        this.client = WebClient.builder().baseUrl(this.omny_api_url)
+    private void initClient() {
+        String omny_api_url = this.omny_api_url + "orgs/" + this.org_id;
+        this.client = WebClient.builder().baseUrl(omny_api_url)
             .defaultHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
             // for "DataBufferLimitException: Exceeded limit on max bytes to buffer"
             .exchangeStrategies(ExchangeStrategies
                 .builder()
                 .codecs(configurer -> configurer
                     .defaultCodecs()
-                    .maxInMemorySize(1 * 1024 * 1024)
+                    .maxInMemorySize(4 * 1024 * 1024)
                 )
                 .build()
             )

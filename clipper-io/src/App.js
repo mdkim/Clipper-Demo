@@ -1,15 +1,13 @@
 import {
-  Routes,
-  Route,
   Link as RouterLink,
-  Outlet
+  Outlet, Route, Routes
 } from "react-router-dom";
 
-import Sheet from '@mui/joy/Sheet';
 import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
 
-import ProgramsPage from './views/Programs'
-import ClipsPage from './views/Clips'
+import ClipsPage from './views/Clips';
+import ProgramsPage from './views/Programs';
 
 function App() {
   return (
