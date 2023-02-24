@@ -1,4 +1,4 @@
-# SCPR Demo
+# Clipper Demo
 
 1. start `clipper-api`
 ```sh
