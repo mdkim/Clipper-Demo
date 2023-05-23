@@ -135,16 +135,13 @@ function getLabel(orgId, orgLabel) {
 
 function getOrgIds() {
   const orgIds = [
-    {"aaea4e69-af51-495e-afc9-a9760146922b": "huge list of programs"},
-    {"289ceca7-bef3-48af-9f74-a4ba0095cab1": "for kids"},
-    {"4bb33704-615b-4054-aae9-ace500fd4197": "Indian"},
     {"8edea6b9-fca4-41a1-83ee-aa76002b9dd8": "crypto"},
-    {"5dcefa8e-00a9-4595-8ce1-a4ab0080f142": ""},
+    {"289ceca7-bef3-48af-9f74-a4ba0095cab1": "for kids"},
+    {"796469f9-ea34-46a2-8776-ad0f015d6beb": ""},
     {"3aeeb75f-3358-42d4-8232-acad017ea3bd": ""},
     {"650c5084-d813-4594-aae1-a5fd007677a7": ""},
-    {"796469f9-ea34-46a2-8776-ad0f015d6beb": ""},
+    {"5dcefa8e-00a9-4595-8ce1-a4ab0080f142": ""},
     {"885ace83-027a-47ad-ad67-aca7002f1df8": ""},
-    {"9b7dacdf-a925-4f95-84dc-ac46003451ff": ""},
     {"9c074afa-3313-47e8-b802-a9f900789975": ""},
     {"aaea4e69-af51-495e-afc9-a9760146922b": ""},
     {"acc8cc57-ff7c-44c5-9bd6-ab0900fbdc43": ""},
@@ -156,6 +153,9 @@ function getOrgIds() {
     {"8c0a4104-a688-4e57-91fd-ad7b00d5dddd": ""},
     {"58028bcf-e01f-4274-aca7-ad3300f67928": ""},
     {"9b7dacdf-a925-4f95-84dc-ac46003451ff": ""},
+    {"4bb33704-615b-4054-aae9-ace500fd4197": ""},
+    {"9b7dacdf-a925-4f95-84dc-ac46003451ff": "(Not available)"},
+    {"aaea4e69-af51-495e-afc9-a9760146922b": "kpcc (Not Available)"},
   ];
   return orgIds;
 }
