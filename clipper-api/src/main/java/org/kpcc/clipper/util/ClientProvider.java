@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct; // for Java >9, use `jakarta.annotation.PostConstruct`
 import reactor.core.publisher.Mono;
 
 @Component

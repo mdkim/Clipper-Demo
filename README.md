@@ -2,10 +2,17 @@
 
 1. start `clipper-api`
 ```sh
+# using Maven
+cd clipper-api
+./mvnw spring-boot:run
+```
+-- or --
+```sh
+# using Gradle
 cd clipper-api
 ./gradlew bootRun
 
-# or on Windows
+# or using Gradle on Windows
 cd clipper-api
 .\gradlew bootRun
 ```

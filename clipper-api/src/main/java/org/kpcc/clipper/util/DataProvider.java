@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct; // for Java >9, use `jakarta.annotation.PostConstruct`
 
 @Component
 @PropertySource("classpath:api.properties")
@@ -36,13 +36,13 @@ public class DataProvider {
         }
     }
 
-    final String createSql = """
-        create table if not exists faves (
-            user_id varchar(255) NOT NULL,
-            clip_id varchar(255) NOT NULL,
-            clip_json varchar(255),
-            primary key (user_id, clip_id)
-        )""";
+    final String createSql =
+        "create table if not exists faves (\n" +
+        "    user_id varchar(255) NOT NULL,\n" +
+        "    clip_id varchar(255) NOT NULL,\n" +
+        "    clip_json varchar(255),\n" +
+        "    primary key (user_id, clip_id)\n" +
+        ")";
     public void createFaves() {
         try (
             Connection conn = DriverManager.getConnection(url);
@@ -54,10 +54,10 @@ public class DataProvider {
         }
     }
 
-    final static String findAllSql = """
-        select clip_id
-        from faves where user_id = ?
-        """;
+    final static String findAllSql =
+        "select clip_id\n" +
+        "from faves where user_id = ?"
+        ;
     public Map<String, Boolean> getFavorites(String userId) {
         createFaves();
 
@@ -78,14 +78,14 @@ public class DataProvider {
         return result;
     }
 
-    final static String insertSql = """
-        insert into faves (user_id, clip_id)
-        values (?, ?)
-        """;
-    final static String deleteSql = """
-        delete from faves
-        where user_id=? and clip_id=?
-        """;
+    final static String insertSql =
+        "insert into faves (user_id, clip_id)\n" +
+        "values (?, ?)"
+        ;
+    final static String deleteSql =
+        "delete from faves\n" +
+        "where user_id=? and clip_id=?"
+        ;
     public boolean updateFavorite(String userId,
                                   String clipId,
                                   boolean isFavorite) {
